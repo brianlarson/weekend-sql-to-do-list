@@ -20,4 +20,10 @@ router.get("/", (req, res) => {
   });
 });
 
+// TODO: Set up POST router for adding todos
+
+// TODO: Set up PUT router for changing `isComplete` status
+
+// TODO: Set up DELETE router for removing todos from db
+
 module.exports = router;

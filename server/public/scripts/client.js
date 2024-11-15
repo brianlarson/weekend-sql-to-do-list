@@ -22,6 +22,10 @@ function getTodos() {
   });
 }
 
+// TODO: Create function to toggle completed status on todos with PUT request
+
+// TODO: Create function to delete todos from list with DELETE request
+
 // Render todos to DOM
 function renderTodos(todos) {
   // Clear list before re-rendering
