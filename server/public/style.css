@@ -1,0 +1,9 @@
+/* Bootstrap overrides/mods */
+.container {
+  max-width: 45rem;
+}
+.list-group label span {
+  margin-left: .5rem;
+}
+
+/* Custom */
