@@ -7,3 +7,7 @@
 }
 
 /* Custom */
+.completed input[type="checkbox"] {
+  background-color: #198754;
+  border-color: #198754;
+}
