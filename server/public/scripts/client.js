@@ -22,6 +22,8 @@ function getTodos() {
   });
 }
 
+// TODO: Create function to add new todos
+
 // TODO: Create function to toggle completed status on todos with PUT request
 
 // TODO: Create function to delete todos from list with DELETE request
@@ -34,8 +36,9 @@ function renderTodos(todos) {
   // Loop through todos received from database and add to DOM
   for (const todo of todos) {
     // Handle look of todo based on completed status
-    let liClassList = todo.isComplete ? " bg-secondary-subtle completed": "";
-    let checkedAttr = todo.isComplete ? " checked" : "";
+    const liClassList = todo.isComplete ? ` bg-transparent fst-italic text-secondary completed`: ` bg-dark-subtle`;
+    const checkedAttr = todo.isComplete ? ` checked` : ``;
+    const badgeHtml = todo.isComplete ? `<span class="badge rounded-pill text-bg-success fst-normal fw-light">Completed</span>` : ``;
 
     // Append retrieved todos to list
     todoListUl.innerHTML += `
@@ -45,6 +48,7 @@ function renderTodos(todos) {
             <input class="form-check-input mt-0" type="checkbox"${checkedAttr}>
             <label class="form-check-label" for="firstCheckbox">
               <span>${todo.text}</span>
+              ${badgeHtml}
             </label>
           </div>
           <div class="col-4 d-flex justify-content-end">
