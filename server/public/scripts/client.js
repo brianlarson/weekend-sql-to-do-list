@@ -42,17 +42,17 @@ function renderTodos(todos) {
 
     // Append retrieved todos to list
     todoListUl.innerHTML += `
-      <li id="todo-${todo.id}" class="list-group-item${liClassList}">
+      <li id="todo-${todo.id}" class="list-group-item${liClassList}" data-testid="toDoItem">
         <div class="row g-3">
           <div class="col-8 d-flex align-items-center">
-            <input class="form-check-input mt-0" type="checkbox"${checkedAttr}>
+            <input class="form-check-input mt-0" type="checkbox" data-testid="completeButton"${checkedAttr}>
             <label class="form-check-label" for="firstCheckbox">
               <span>${todo.text}</span>
               ${badgeHtml}
             </label>
           </div>
           <div class="col-4 d-flex justify-content-end">
-            <button class="btn btn-sm btn-outline-danger">Delete</button>
+            <button onClick="deleteTodo(event, ${todo.id})" class="btn btn-sm btn-outline-danger" data-testid="deleteButton">Delete</button>
           </div>
         </div>
       </li>
