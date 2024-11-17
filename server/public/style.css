@@ -1,6 +1,6 @@
 /* Bootstrap overrides/mods */
 .container {
-  max-width: 45rem;
+  max-width: 60rem;
 }
 .list-group label span {
   margin-left: .75rem;
@@ -8,14 +8,25 @@
 span.badge {
   transform: translateY(-2px);
   letter-spacing: 0.02rem;
-  color: #1A1D20 !important;
-}
-#todoList li input[type="checkbox"] {
-  font-size: 1.5rem !important;
+  /* color: #1A1D20 !important; */
 }
 
 /* Custom */
 .completed input[type="checkbox"] {
   background-color: #198754;
   border-color: #198754;
+}
+[data-testid="completeButton"] {
+  position: relative;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+[data-testid="completeButton"] svg {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.35rem;
+  width: 14px;
+  height: 14px;
+  color: white;
 }
