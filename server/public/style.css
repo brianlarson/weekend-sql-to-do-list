@@ -12,15 +12,14 @@ span.badge {
 }
 
 /* Custom */
-.completed input[type="checkbox"] {
-  background-color: #198754;
-  border-color: #198754;
-}
 [data-testid="completeButton"] {
   position: relative;
   cursor: pointer;
   width: 24px;
   height: 24px;
+}
+[data-testid="completeButton"]:hover {
+  background-color: transparent;
 }
 [data-testid="completeButton"] svg {
   position: absolute;

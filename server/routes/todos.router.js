@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const pool = require('../modules/pool');
 
-// ********************
-// ! 🙀 Oh C.R.U.D.!
-// ********************
+// *********************
+// ** 🙀 Oh C.R.U.D.! **
+// *********************
 
-// ! CREATE
 // POST - add a new todo to the db
 router.post("/", (req, res) => {
 
@@ -29,7 +28,6 @@ router.post("/", (req, res) => {
 
 });
 
-// ! READ
 // GET - get and return all todos from db
 router.get("/", (req, res) => {
 
@@ -50,8 +48,7 @@ router.get("/", (req, res) => {
 
 });
 
-// ! UPDATE
-// TODO: Set up PUT router for changing `isComplete` status
+// TODO: router.put()
 // PUT - update a todo from the db
 router.put("/", (req, res) => {
 
@@ -62,6 +59,7 @@ router.put("/", (req, res) => {
   pool.query(statement)
    .then(result => {
     // That worked so return an OK status
+    console.log(`Updating todo status…`, req.body);
     res.sendStatus(200);
  })
    .catch(error => {
@@ -72,7 +70,6 @@ router.put("/", (req, res) => {
 
 });
 
-// ! DELETE
 // DELETE - delete a todo from the db
 router.delete("/", (req, res) => {
   console.log(`req.body is:`, req.body);
