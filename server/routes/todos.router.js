@@ -35,7 +35,7 @@ router.get("/", (req, res) => {
 
   // Run SQL query statement with pg.Pool to retrieve todos
   // ordered by ID
-  let statement = `SELECT * FROM "todos" ORDER BY "id" ASC`;
+  let statement = `SELECT * FROM "todos" ORDER BY "id" ASC;`;
   pool.query(statement)
     .then(result => {
       // That worked so log it and return the db rows/todo items
@@ -53,13 +53,31 @@ router.get("/", (req, res) => {
 // ! UPDATE
 // TODO: Set up PUT router for changing `isComplete` status
 // PUT - update a todo from the db
+router.put("/", (req, res) => {
+
+ // Run SQL query statement with pg.Pool to delete todo by ID
+  let statement = `UPDATE "todos" SET "isComplete" = ${req.body.isComplete} WHERE "id" = ${req.body.id};`;
+  console.log(`req.body`, req.body);
+  console.log(`SQL statement:`, statement);
+  pool.query(statement)
+   .then(result => {
+    // That worked so return an OK status
+    res.sendStatus(200);
+ })
+   .catch(error => {
+     // Log error and send HTTP error status
+     console.log("Error getting todos from database…", error);
+     res.sendStatus(500);
+ });
+
+});
 
 // ! DELETE
 // DELETE - delete a todo from the db
 router.delete("/", (req, res) => {
-
+  console.log(`req.body is:`, req.body);
   // Run SQL query statement with pg.Pool to delete todo by ID
-  let statement = `DELETE FROM "todos" WHERE "id" = ${req.body.id}`;
+  let statement = `DELETE FROM "todos" WHERE "id" = ${req.body.id};`;
   pool.query(statement)
    .then(result => {
     // That worked so return an OK status
