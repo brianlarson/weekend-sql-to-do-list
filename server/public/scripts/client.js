@@ -4,7 +4,7 @@
 const todoListUl = document.getElementById("todoList");
 const todoTextInput = document.getElementById("todoText");
 
-// Get and render todos to DOM - set focus on input
+// Get and render todos to DOM
 getTodos();
 
 // Make GET HTTP request to retrieve todos from db and render them
@@ -19,9 +19,6 @@ function getTodos() {
       // GET request and response successful so render data to DOM
       // console.log("/todos GET request sent - response from server:", response.data);
       renderTodos(response.data);
-      
-      // Set focus on text input for adding todos
-      todoTextInput.focus();
   })
     .catch((error) => {
       // Log error
@@ -57,7 +54,6 @@ function addTodo(event) {
 
 }
 
-// TODO: toggleStatus()
 // Make PUT HTTP request to update todo completed status, refresh from
 // db and re-render
 function toggleStatus(event, todoId) {
