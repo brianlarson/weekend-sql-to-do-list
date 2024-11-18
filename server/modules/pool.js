@@ -10,7 +10,7 @@ const pool = new pg.Pool({
     host: 'localhost',
     port: 5432,
     database: databaseName,
-    allowExitOnIdle: true 
+    allowExitOnIdle: true
 })
 
 module.exports = pool
