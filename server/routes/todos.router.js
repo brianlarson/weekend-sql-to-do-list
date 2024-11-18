@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const pool = require('../modules/pool');
+const moment = require("moment");
 
 // *********************
 // ** 🙀 Oh C.R.U.D.! **
@@ -48,25 +49,31 @@ router.get("/", (req, res) => {
 
 });
 
-// TODO: router.put()
+  
+
 // PUT - update a todo from the db
 router.put("/", (req, res) => {
 
- // Run SQL query statement with pg.Pool to delete todo by ID
-  let statement = `UPDATE "todos" SET "isComplete" = ${req.body.isComplete} WHERE "id" = ${req.body.id};`;
-  console.log(`req.body`, req.body);
-  console.log(`SQL statement:`, statement);
-  pool.query(statement)
-   .then(result => {
-    // That worked so return an OK status
-    console.log(`Updating todo status…`, req.body);
-    res.sendStatus(200);
- })
-   .catch(error => {
-     // Log error and send HTTP error status
-     console.log("Error getting todos from database…", error);
-     res.sendStatus(500);
- });
+  // Set up SQL statements and handle completedAt TIMESTAMPTZ values
+  let completedQuery = `UPDATE "todos" SET "isComplete" = ${req.body.isComplete} WHERE "id" = ${req.body.id};`
+  let timeStamp = req.body.isComplete ? `'${moment().toISOString()}'` : null;
+  let timeStampQuery = `UPDATE "todos" SET "completedAt" = ${timeStamp} WHERE "id" = ${req.body.id};`;
+
+  // Run SQL query statements with pg.Pool to update todo by ID
+  pool.query(completedQuery)
+    .then(result => {
+      console.log(`Updating todo status…`, req.body);
+    })
+    .then(() => pool.query(timeStampQuery))
+    .then(results => {
+      console.log(`Adding completed time stamp…`, results);
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      // Log error and send HTTP error status
+      console.log("Error getting todos from database…", error);
+      res.sendStatus(500);
+  });
 
 });
 

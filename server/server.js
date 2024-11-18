@@ -1,9 +1,8 @@
 const express = require('express');
-const app = express();
-
 const todos = require('./routes/todos.router.js');
-
 let PORT = 5001;
+
+const app = express();
 
 // Do not modify this!
 if (process.env.NODE_ENV == 'test') {
